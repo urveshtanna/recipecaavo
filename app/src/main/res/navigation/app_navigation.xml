@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/recipe_list_fragment">
+
+    <fragment
+        android:id="@+id/recipe_list_fragment"
+        android:name="com.urveshtanna.recipescaavo.ui.main.RecipeListFragment"
+        android:label="Discover"
+        tools:layout="@layout/recipe_list_fragment">
+
+        <action
+            android:id="@+id/action_recipe_list_to_cart"
+            app:destination="@id/cart_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart_fragment"
+        android:name="com.urveshtanna.recipescaavo.ui.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/cart_fragment">
+
+        <action
+            android:id="@+id/movie_details_to_movie_list"
+            app:popUpTo="@id/recipe_list_fragment" />
+
+    </fragment>
+
+</navigation>

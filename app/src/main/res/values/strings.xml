@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RecipesCaavo</string>
+    <string name="recipe_photo">Recipe Photo</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="remove">Remove</string>
+    <string name="cart_0_items">Cart (0 items)</string>
+    <string name="your_cart_is_empty_please_add_some_products">Your cart is empty! Please add some products.</string>
+    <plurals name="cart_items">
+        <item quantity="zero">Cart (%d items)</item>
+        <item quantity="one">Cart (%d item)</item>
+        <item quantity="other">Cart (%d items)</item>
+    </plurals>
+</resources>
