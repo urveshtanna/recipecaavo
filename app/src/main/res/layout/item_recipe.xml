@@ -67,6 +67,21 @@
                 android:textColor="@color/primaryTextColor"
                 app:strokeColor="@color/primaryTextColor" />
 
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/info"
+                app:icon="@drawable/ic_outline_info"
+                app:iconTint="@color/primaryTextColor"
+                android:id="@+id/btn_info"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:textColor="@color/primaryTextColor"
+                app:strokeColor="@color/primaryTextColor" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

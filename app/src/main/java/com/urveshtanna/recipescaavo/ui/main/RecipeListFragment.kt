@@ -1,21 +1,19 @@
 package com.urveshtanna.recipescaavo.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.urveshtanna.recipescaavo.R
 import com.urveshtanna.recipescaavo.data.model.Recipe
+import com.urveshtanna.recipescaavo.databinding.BottomSheetRecipeInformationBinding
 import com.urveshtanna.recipescaavo.databinding.RecipeListFragmentBinding
 import com.urveshtanna.recipescaavo.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +47,11 @@ class RecipeListFragment : Fragment() {
     private fun setupCartClick() {
         binding.btnGoToCart.setOnClickListener {
             if (viewModel.cartCount.value == 0) {
-                Toast.makeText(requireContext(), getString(R.string.your_cart_is_empty_please_add_some_products), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.your_cart_is_empty_please_add_some_products),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 findNavController().navigate(R.id.action_recipe_list_to_cart)
             }
@@ -92,11 +94,26 @@ class RecipeListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = RecipeAdapter(arrayListOf()) {
-            viewModel.updateQuantity(it)
+        adapter = RecipeAdapter(arrayListOf()) { recipe: Recipe, showInfo: Boolean ->
+            if (showInfo) {
+                showInfoBottomSheet(recipe)
+            } else {
+                viewModel.updateQuantity(recipe)
+            }
         }
         binding.recipeRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recipeRecyclerView.adapter = adapter
+    }
+
+    private fun showInfoBottomSheet(recipe: Recipe) {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bottomSheetRecipeDetailBinding = BottomSheetRecipeInformationBinding.inflate(LayoutInflater.from(requireContext()))
+        bottomSheetRecipeDetailBinding.model = recipe
+        bottomSheetDialog.setContentView(bottomSheetRecipeDetailBinding.root)
+        bottomSheetRecipeDetailBinding.btnAddToCart.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog.show()
     }
 
 }

@@ -8,7 +8,7 @@ import com.urveshtanna.recipescaavo.data.model.Recipe
 import com.urveshtanna.recipescaavo.databinding.ItemRecipeBinding
 import com.urveshtanna.recipescaavo.databinding.ItemRecipeFooterBinding
 
-class RecipeAdapter(var recipeList: ArrayList<Recipe>, val onRecipeClick: (Recipe) -> Unit) :
+class RecipeAdapter(var recipeList: ArrayList<Recipe>, private val onRecipeClick: (Recipe, Boolean) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     public val VIEW_TYPE_BODY: Int = 1;
@@ -45,8 +45,12 @@ class RecipeAdapter(var recipeList: ArrayList<Recipe>, val onRecipeClick: (Recip
                     recipeList.get(holder.bindingAdapterPosition).quantity =
                         recipeList.get(holder.bindingAdapterPosition).quantity + 1
                 }
-                onRecipeClick.invoke(recipeList.get(holder.bindingAdapterPosition))
+                onRecipeClick.invoke(recipeList.get(holder.bindingAdapterPosition), false)
                 notifyItemChanged(holder.bindingAdapterPosition)
+            }
+
+            holder.binding.btnInfo.setOnClickListener {
+                onRecipeClick.invoke(recipeList.get(holder.bindingAdapterPosition), true)
             }
         }
     }

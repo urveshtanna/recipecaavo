@@ -5,6 +5,12 @@
     <string name="remove">Remove</string>
     <string name="cart_0_items">Cart (0 items)</string>
     <string name="your_cart_is_empty_please_add_some_products">Your cart is empty! Please add some products.</string>
+    <string name="info">Info</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="label">Label</string>
+    <string name="price">Price</string>
+    <string name="got_it">Got it</string>
     <plurals name="cart_items">
         <item quantity="zero">Cart (%d items)</item>
         <item quantity="one">Cart (%d item)</item>
